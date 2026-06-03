@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1 align="center">Employee UI</h1>
+        <style>
+            .button {
+              border: 1px;
+              color: white;
+              width: 15%;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: block;
+              font-size: 16px;
+              margin: 2px auto;
+              cursor: pointer;
+            }
+            .buttonn {
+              border: 1px;
+              color: white;
+              width: auto;
+              padding: 10px 20px;
+              text-align: center;
+              text-decoration: none;
+              font-size: 16px;
+              background-color: #008CBA;
+              position: absolute;
+              top: 0;
+              left: 0;
+              margin: 10px;
+              cursor: pointer;
+            }
+            
+            .button1 {background-color: #04AA6D;} /* Green */
+            .button2 {background-color: #008CBA;} /* Blue */
+        </style>
+        <style>
+            table {
+                width: 80%;
+                margin: 20px auto;
+                border-collapse: collapse;
+                text-align: left;
+            }
+    
+            th, td {
+                padding: 12px;
+                border: 1px solid #ddd;
+                text-align: center;
+            }
+    
+            th {
+                background-color: #04AA6D;
+                color: white;
+            }
+    
+            td {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="GET" action="/makeReservation">
+            <button class="button button2">Make Reservation</button>
+        </form>
+        <form method="GET" action="/index">
+            <button class="buttonn">Logout</button>
+        </form>
+        <table align="center" border="solid">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Party Size</th>
+                <th>Contact Info</th>
+                <th>Time</th>
+                <th>Date</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each="reservation : ${reservations}">
+                <td th:text="${reservation.firstName}"></td>
+                <td th:text="${reservation.lastName}"></td>
+                <td th:text="${reservation.partySize}"></td>
+                <td th:text="${reservation.contactInfo}"></td>
+                <td th:text="${reservation.time}"></td>
+                <td th:text="${reservation.date}"></td>
+                <td>
+                    <a th:href="@{/editReservation(id=${reservation.reservationId})}">Edit</a>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

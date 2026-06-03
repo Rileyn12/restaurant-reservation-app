@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1 align="center">Employee Login</h1>
+
+        <style>
+            .button {
+              border: 1px;
+              color: white;
+              width: 15%;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: block;
+              font-size: 16px;
+              margin: 2px auto;
+              cursor: pointer;
+            }
+            .input {
+              width: 15%;
+              display: block;
+              font-size: 16px;
+              margin: 2px auto;
+            }
+            .error {
+                display: block;
+                margin: 2px auto;
+                color: RED;
+                font-size: 16px;
+                text-align: center;
+            }
+            
+            .button1 {background-color: #04AA6D;} /* Green */
+            .button2 {background-color: #008CBA;} /* Blue */
+        </style>
+    </head>
+    <body>
+        <form method="POST" action="/employeeLogin">
+            <div th:if="${error}" class="error" th:text="${error}"></div>
+            <input type="text" name="username" class="input" placeholder="Username" required>
+            <input type="password" name="password" class="input" placeholder="Password" required>
+            <button class="button button1">Login</button>
+        </form>
+    </body>
+</html>

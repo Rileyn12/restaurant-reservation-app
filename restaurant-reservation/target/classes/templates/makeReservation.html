@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1 align="center">Make Reservation</h1>
+        <style>
+            .button {
+              border: 1px;
+              color: white;
+              width: 15%;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: block;
+              font-size: 16px;
+              margin: 2px auto;
+              cursor: pointer;
+            }
+            .input {
+              width: 15%;
+              display: block;
+              font-size: 16px;
+              margin: 2px auto;
+            }
+            .button1 {background-color: #04AA6D;} /* Green */
+            .input-container {
+                display: flex;
+                position: relative;
+            }
+            .error-message {
+              color: red;
+              position: absolute;
+              left: 58%;
+              top: 50%;
+              transform: translateY(-50%);
+              font-size: 0.875rem; /* Slightly smaller text for error messages */
+            }
+        </style>
+    </head>
+    <body>
+        <form th:action="@{/add-reservation}" method="post" th:object="${reservation}">
+            <div class="input-container">
+                <input type="text" class="input" th:field="*{firstName}" placeholder="First Name"/>
+                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="text" class="input" th:field="*{lastName}" placeholder="Last Name"/>
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="number" class="input" th:field="*{partySize}" placeholder="Party Size"/>
+                <span th:if="${#fields.hasErrors('partySize')}" th:errors="*{partySize}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="text" class="input" th:field="*{contactInfo}" placeholder="Email"/>
+                <span th:if="${#fields.hasErrors('contactInfo')}" th:errors="*{contactInfo}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="time" class="input" th:field="*{time}" />
+                <span th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="date" class="input" th:field="*{date}" />
+                <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="error-message"></span>
+            </div>
+            <button type="submit" class="button button1">Create Reservation</button>
+        </form>
+    </body>
+</html>

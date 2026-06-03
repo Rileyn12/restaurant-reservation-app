@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1 align="center">Edit Reservation</h1>
+        <style>
+            .button {
+              border: 1px;
+              color: white;
+              width: 15%;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: block;
+              font-size: 16px;
+              margin: 2px auto;
+              cursor: pointer;
+            }
+            .input {
+              width: 15%;
+              display: block;
+              font-size: 16px;
+              margin: 2px auto;
+            }
+            .button1 {background-color: #04AA6D;} /* Green */
+            .button2 {background-color: #008CBA;} /* Blue */
+            .button3 {background-color: #aa0404;} /* Red */
+            .input-container {
+                display: flex;
+                position: relative;
+            }
+            .error-message {
+              color: red;
+              position: absolute;
+              left: 58%;
+              top: 50%;
+              transform: translateY(-50%);
+              font-size: 0.875rem; /* Slightly smaller text for error messages */
+            }
+        </style>
+    </head>
+    <body>
+        <p align="center">Edit any field of information.</p>
+        <form method="POST" th:action="@{/editReservation}" th:object="${reservation}">
+            <!-- Hidden field to pass the ID -->
+            <input type="hidden" name="reservationId" th:value="${reservation.reservationId}" />
+        
+            <!-- Fields pre-populated with existing reservation data -->
+            <div class="input-container">
+                <input type="text" class="input" name="firstName" th:value="${reservation.firstName}" />
+                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="text" class="input" name="lastName" th:value="${reservation.lastName}" />
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="number" class="input" name="partySize" th:value="${reservation.partySize}" />
+                <span th:if="${#fields.hasErrors('partySize')}" th:errors="*{partySize}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="text" class="input" name="contactInfo" th:value="${reservation.contactInfo}" />
+                <span th:if="${#fields.hasErrors('contactInfo')}" th:errors="*{contactInfo}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="time" class="input" name="time" th:value="${reservation.time}" />
+                <span th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="error-message"></span>
+            </div>
+            <div class="input-container">
+                <input type="date" class="input" name="date" th:value="${reservation.date}" />
+                <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="error-message"></span>
+            </div>
+        
+            <!-- Edit Reservation button -->
+            <button class="button button1">Edit Reservation</button>
+        </form>
+        <a th:href="@{/completeReservation(id=${reservation.reservationId})}" class="button button2">Complete Reservation</a>
+        <a th:href="@{/completeReservation(id=${reservation.reservationId})}" class="button button3">Delete Reservation</a>
+    </body>
+</html>

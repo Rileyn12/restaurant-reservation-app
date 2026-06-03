@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1 align="center">Confirm Edit</h1>
+        <style>
+            .button {
+              border: 1px;
+              color: white;
+              width: 15%;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: block;
+              font-size: 16px;
+              margin: 2px auto;
+              cursor: pointer;
+            }
+            
+            .button1 {background-color: #04AA6D;} /* Green */
+            .button2 {background-color: #ba0000;} /* Red */
+        </style>
+    </head>
+    <body>
+        <p align="center"><strong>First Name:</strong> <span th:text="${reservation.firstName}"></span></p>
+        <p align="center"><strong>Last Name:</strong> <span th:text="${reservation.lastName}"></span></p>
+        <p align="center"><strong>Party Size:</strong> <span th:text="${reservation.partySize}"></span></p>
+        <p align="center"><strong>Contact Info:</strong> <span th:text="${reservation.contactInfo}"></span></p>
+        <p align="center"><strong>Time:</strong> <span th:text="${reservation.time}"></span></p>
+        <p align="center"><strong>Date:</strong> <span th:text="${reservation.date}"></span></p>
+    
+        <form method="POST" th:action="@{/confirmEditReservation}">
+            <input type="hidden" name="reservationId" th:value="${reservation.reservationId}" />
+            <input type="hidden" name="firstName" th:value="${reservation.firstName}" />
+            <input type="hidden" name="lastName" th:value="${reservation.lastName}" />
+            <input type="hidden" name="partySize" th:value="${reservation.partySize}" />
+            <input type="hidden" name="contactInfo" th:value="${reservation.contactInfo}" />
+            <input type="hidden" name="time" th:value="${reservation.time}" />
+            <input type="hidden" name="date" th:value="${reservation.date}" />
+            <button class="button button1" type="submit">Confirm Edits</button>
+        </form>
+    
+        <button class="button button2" onclick="history.back()">Edit Again</button>
+    </body>
+</html>
